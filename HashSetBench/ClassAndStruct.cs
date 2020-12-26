@@ -269,7 +269,6 @@ namespace HashSetBench
         public bool Equals(MediumStruct other)
         {
             return (MyInt == other.MyInt && MyDouble == other.MyDouble && MyDate == other.MyDate);
-
         }
 
         public static bool operator ==(MediumStruct c1, MediumStruct c2)
@@ -613,23 +612,23 @@ namespace HashSetBench
     // this should be about 64 bytes, not including the space for the actual string bytes
     public sealed class VeryLargeClass : IEquatable<VeryLargeClass>
     {
-        private readonly DateTime _MyDate;
-        private readonly double _MyDouble;
-        private readonly double _MyDouble2;
-        private readonly int _MyInt;
-        private readonly int _MyInt2;
-        private readonly int _MyInt3;
-        private readonly string _MyString;
+        private readonly DateTime _myDate;
+        private readonly double _myDouble;
+        private readonly double _myDouble2;
+        private readonly int _myInt;
+        private readonly int _myInt2;
+        private readonly int _myInt3;
+        private readonly string _myString;
 
         public VeryLargeClass(DateTime dt, double d, double d2, int i, int i2, int i3, string s)
         {
-            _MyDate = dt;
-            _MyDouble = d;
-            _MyDouble2 = d2;
-            _MyInt = i;
-            _MyInt2 = i2;
-            _MyInt3 = i3;
-            _MyString = s;
+            _myDate = dt;
+            _myDouble = d;
+            _myDouble2 = d2;
+            _myInt = i;
+            _myInt2 = i2;
+            _myInt3 = i3;
+            _myString = s;
         }
 
         public static VeryLargeClass CreateRand(Random rand)
@@ -663,13 +662,13 @@ namespace HashSetBench
 
             unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
             {
-                hash = (hash * 7) + _MyInt;
-                hash = (hash * 7) + _MyInt2;
-                hash = (hash * 7) + _MyInt3;
-                hash = (hash * 7) + _MyDouble.GetHashCode();
-                hash = (hash * 7) + _MyDouble2.GetHashCode();
-                hash = (hash * 7) + _MyDate.GetHashCode();
-                hash = (hash * 7) + _MyString.GetHashCode();
+                hash = (hash * 7) + _myInt;
+                hash = (hash * 7) + _myInt2;
+                hash = (hash * 7) + _myInt3;
+                hash = (hash * 7) + _myDouble.GetHashCode();
+                hash = (hash * 7) + _myDouble2.GetHashCode();
+                hash = (hash * 7) + _myDate.GetHashCode();
+                hash = (hash * 7) + _myString.GetHashCode();
             }
 
             return hash;
@@ -692,7 +691,7 @@ namespace HashSetBench
                 return false;
             }
 
-            return (_MyInt == other._MyInt && _MyInt2 == other._MyInt2 && _MyInt3 == other._MyInt3 && _MyDouble == other._MyDouble && _MyDouble2 == other._MyDouble2 && _MyDate == other._MyDate && _MyString == other._MyString);
+            return (_myInt == other._myInt && _myInt2 == other._myInt2 && _myInt3 == other._myInt3 && _myDouble == other._myDouble && _myDouble2 == other._myDouble2 && _myDate == other._myDate && _myString == other._myString);
         }
     }
 }

@@ -677,11 +677,11 @@ namespace HashSetBench
     public class MinMaxIntRangeContains1_000_000to10_000_000
     {
         private readonly int[] _a;
-        private readonly int[] c;
+        private readonly int[] _c;
 
-        private readonly SCG.HashSet<int> h = new HashSet<int>();
-        private readonly FastHashSet<int> f = new FastHashSet<int>();
-        private readonly C5.HashSet<int> c5 = new C5.HashSet<int>();
+        private readonly SCG.HashSet<int> _h = new HashSet<int>();
+        private readonly FastHashSet<int> _f = new FastHashSet<int>();
+        private readonly C5.HashSet<int> _c5 = new C5.HashSet<int>();
 
 
         [Params(1000000,
@@ -701,7 +701,7 @@ namespace HashSetBench
 
         public MinMaxIntRangeContains1_000_000to10_000_000()
         {
-            BenchUtil.PopulateCollections25_25_50PctUnique(MaxN, out _a, out c, h, f, c5);
+            BenchUtil.PopulateCollections25_25_50PctUnique(MaxN, out _a, out _c, _h, _f, _c5);
             //BenchUtil.PopulateCollections50PctUnique(MaxN, out _a, out c, h, f, c5, sortedSet, lst);
         }
 
@@ -710,7 +710,7 @@ namespace HashSetBench
         {
             for (int i = 0; i < N; i++)
             {
-                h.Contains(c[i]);
+                _h.Contains(_c[i]);
             }
         }
 
@@ -719,7 +719,7 @@ namespace HashSetBench
         {
             for (int i = 0; i < N; i++)
             {
-                f.Contains(c[i]);
+                _f.Contains(_c[i]);
             }
         }
 
@@ -728,7 +728,7 @@ namespace HashSetBench
         {
             for (int i = 0; i < N; i++)
             {
-                c5.Contains(c[i]);
+                _c5.Contains(_c[i]);
             }
         }
 
@@ -755,7 +755,7 @@ namespace HashSetBench
     //[OpenXmlExporter]
     public class MinMaxIntRange1to100
     {
-        private int[] __intArray;
+        private int[] _intArray;
 
         [Params(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
                 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -774,12 +774,12 @@ namespace HashSetBench
         [GlobalSetup]
         public void Setup()
         {
-            __intArray = new int[N];
+            _intArray = new int[N];
 
             Random rand = new Random(89);
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                __intArray[i] = rand.Next(int.MinValue, int.MaxValue);
+                _intArray[i] = rand.Next(int.MinValue, int.MaxValue);
             }
         }
 
@@ -787,9 +787,9 @@ namespace HashSetBench
         public void SCG_Add()
         {
             SCG.HashSet<int> set = new SCG.HashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
 
@@ -797,9 +797,9 @@ namespace HashSetBench
         public void C5_HashSet_Add()
         {
             C5.HashSet<int> set = new C5.HashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
 
@@ -808,9 +808,9 @@ namespace HashSetBench
         {
             // if there are duplicate values in the array, then this will add the duplicates, so this isn't really an apples to apples comparison vs. sets, which will only have added _a single value
             SCG.List<int> lst = new SCG.List<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                lst.Add(__intArray[i]);
+                lst.Add(_intArray[i]);
             }
             lst.Sort();
         }
@@ -819,9 +819,9 @@ namespace HashSetBench
         public void SortedSet_Add()
         {
             SCG.SortedSet<int> set = new SCG.SortedSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
 
@@ -829,9 +829,9 @@ namespace HashSetBench
         public void Fast_Add()
         {
             FastHashSet<int> set = new FastHashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
     }
@@ -1352,7 +1352,7 @@ namespace HashSetBench
     //[OpenXmlExporter]
     public class SmallSize
     {
-        private int[] __intArray;
+        private int[] _intArray;
 
         [Params(1, 2)]
         public int N;
@@ -1360,12 +1360,12 @@ namespace HashSetBench
         [GlobalSetup]
         public void Setup()
         {
-            __intArray = new int[N];
+            _intArray = new int[N];
 
             Random rand = new Random(89);
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                __intArray[i] = rand.Next(int.MinValue, int.MaxValue);
+                _intArray[i] = rand.Next(int.MinValue, int.MaxValue);
             }
         }
 
@@ -1373,9 +1373,9 @@ namespace HashSetBench
         public void SCG_Add()
         {
             SCG.HashSet<int> set = new SCG.HashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
 
@@ -1383,9 +1383,9 @@ namespace HashSetBench
         public void Fast_Add()
         {
             FastHashSet<int> set = new FastHashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
     }
@@ -1395,8 +1395,8 @@ namespace HashSetBench
     {
         private int[] _intArray;
 
-        SCG.HashSet<int> s;
-        FastHashSet<int> f;
+        SCG.HashSet<int> _s;
+        FastHashSet<int> _f;
 
         // these params are 1 before _a resize and then the N that includes _a resize - this way we can see how expensive _a resize is
         [Params(
@@ -1461,23 +1461,23 @@ namespace HashSetBench
         [IterationSetup]
         public void IterSetup()
         {
-            s = new SCG.HashSet<int>();
+            _s = new SCG.HashSet<int>();
             for (int i = 0; i < _intArray.Length - 1; i++)
             {
-                s.Add(_intArray[i]);
+                _s.Add(_intArray[i]);
             }
 
-            f = new FastHashSet<int>();
+            _f = new FastHashSet<int>();
             for (int i = 0; i < _intArray.Length - 1; i++)
             {
-                f.Add(_intArray[i]);
+                _f.Add(_intArray[i]);
             }
         }
 
         [Benchmark(Baseline = true)]
         public void SCG_Add()
         {
-            s.Add(_intArray[N - 1]);
+            _s.Add(_intArray[N - 1]);
         }
 
         //[Benchmark]
@@ -1493,7 +1493,7 @@ namespace HashSetBench
         [Benchmark]
         public void Fast_Add()
         {
-            f.Add(_intArray[N - 1]);
+            _f.Add(_intArray[N - 1]);
         }
     }
 
@@ -2084,7 +2084,7 @@ namespace HashSetBench
         public System.Collections.Generic.IEqualityComparer<SmallClass> comparerClass;
         public System.Collections.Generic.IEqualityComparer<SmallStruct> comparerStruct;
 
-        int[] hashArray;
+        int[] _hashArray;
 
         [Params(1, 2, 3, 4, 5, 6, 7, 8, 9,
                 10, 20, 30, 40, 50, 60, 70, 80, 90,
@@ -2110,7 +2110,7 @@ namespace HashSetBench
             comparerClass = System.Collections.Generic.EqualityComparer<SmallClass>.Default;
             comparerStruct = System.Collections.Generic.EqualityComparer<SmallStruct>.Default;
 
-            hashArray = new int[N];
+            _hashArray = new int[N];
         }
 
         [Benchmark(Baseline = true)]
@@ -2119,7 +2119,7 @@ namespace HashSetBench
             for (int i = 0; i < _a.Length; i++)
             {
                 int hash = comparerClass.GetHashCode(_a[i]);
-                hashArray[i] = hash;
+                _hashArray[i] = hash;
             }
         }
 
@@ -2129,7 +2129,7 @@ namespace HashSetBench
             for (int i = 0; i < ast.Length; i++)
             {
                 int hash = comparerStruct.GetHashCode(ast[i]);
-                hashArray[i] = hash;
+                _hashArray[i] = hash;
             }
         }
     }
@@ -2148,9 +2148,9 @@ namespace HashSetBench
         public System.Collections.Generic.IEqualityComparer<SmallClass> comparerClass;
         public System.Collections.Generic.IEqualityComparer<SmallStruct> comparerStruct;
 
-        int h1;
-        int h2;
-        int h3;
+        int _h1;
+        int _h2;
+        int _h3;
 
         [Params(3)]
 
@@ -2181,17 +2181,17 @@ namespace HashSetBench
         [Benchmark(Baseline = true)]
         public void FastClass()
         {
-            h1 = comparerClass.GetHashCode(sc1);
-            h2 = comparerClass.GetHashCode(sc2);
-            h3 = comparerClass.GetHashCode(sc3);
+            _h1 = comparerClass.GetHashCode(sc1);
+            _h2 = comparerClass.GetHashCode(sc2);
+            _h3 = comparerClass.GetHashCode(sc3);
         }
 
         [Benchmark]
         public void FastStruct()
         {
-            h1 = comparerStruct.GetHashCode(st1);
-            h2 = comparerStruct.GetHashCode(st2);
-            h3 = comparerStruct.GetHashCode(st3);
+            _h1 = comparerStruct.GetHashCode(st1);
+            _h2 = comparerStruct.GetHashCode(st2);
+            _h3 = comparerStruct.GetHashCode(st3);
         }
     }
 
@@ -2379,7 +2379,7 @@ namespace HashSetBench
 
     // Compare _a reference counting implementation using SCG HashSet<SmallClassIntVal> vs. FastHashSet<SmallStructIntVal>
     [RyuJitX64Job]
-    public class RefCountHashSetVFastHashSet
+    public class RefCountHashSetVsFastHashSet
     {
         public int[] _a;
 
@@ -2435,7 +2435,6 @@ namespace HashSetBench
         [Benchmark]
         public void FastRefCnt()
         {
-
             FastHashSet<SmallStructIntVal> set = new FastHashSet<SmallStructIntVal>();
             for (int i = 0; i < _a.Length; i++)
             {
@@ -3111,7 +3110,7 @@ namespace HashSetBench
                    //[MemoryDiagnoser]
     public class MinMaxIntRangeAddInConstructor
     {
-        private int[] __intArray;
+        private int[] _intArray;
 
         //[Params(1_000_000 )]// 100_000_000
         //[Params(1,			2,			3,			4,			5,			6,			7,			8,			9,
@@ -3130,27 +3129,27 @@ namespace HashSetBench
         [GlobalSetup]
         public void Setup()
         {
-            __intArray = new int[N];
+            _intArray = new int[N];
 
             //Random rand = new Random(42);
             //Random rand = new Random(142);
             Random rand = new Random(89);
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                __intArray[i] = rand.Next(int.MinValue, int.MaxValue);
+                _intArray[i] = rand.Next(int.MinValue, int.MaxValue);
             }
         }
 
         [Benchmark(Baseline = true)]
         public void SCG()
         {
-            SCG.HashSet<int> set = new SCG.HashSet<int>(__intArray);
+            SCG.HashSet<int> set = new SCG.HashSet<int>(_intArray);
         }
 
         [Benchmark]
         public void Fast()
         {
-            FastHashSet<int> set = new FastHashSet<int>(__intArray);
+            FastHashSet<int> set = new FastHashSet<int>(_intArray);
         }
     }
 
@@ -3336,7 +3335,7 @@ namespace HashSetBench
                    //[MemoryDiagnoser]
     public class MinMaxIntRangeFastVsFast2
     {
-        private int[] __intArray;
+        private int[] _intArray;
 
         //[Params(10, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10_000, 20_000, 30_000, 40_000, 50_000, 60_000, 70_000, 80_000, 90_000, 100_000, 1_000_000, 10_000_000 )]// 100_000_000
         [Params(10, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10_000, 20_000, 30_000, 40_000, 50_000, 60_000, 70_000, 80_000, 90_000, 100_000, 1_000_000, 10_000_000, 90_000_000)]
@@ -3345,14 +3344,14 @@ namespace HashSetBench
         [GlobalSetup]
         public void Setup()
         {
-            __intArray = new int[N];
+            _intArray = new int[N];
 
             //Random rand = new Random(42);
             //Random rand = new Random(142);
             Random rand = new Random(89);
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                __intArray[i] = rand.Next(int.MinValue, int.MaxValue);
+                _intArray[i] = rand.Next(int.MinValue, int.MaxValue);
             }
         }
 
@@ -3360,9 +3359,9 @@ namespace HashSetBench
         public void Test_Add2()
         {
             FastHashSet<int> set = new FastHashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
 
@@ -3370,9 +3369,9 @@ namespace HashSetBench
         public void Test_Add()
         {
             FastHashSet<int> set = new FastHashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
     }
@@ -3384,7 +3383,7 @@ namespace HashSetBench
     [RyuJitX64Job, LegacyJitX86Job]
     public class SmallerIntRange
     {
-        private int[] __intArray;
+        private int[] _intArray;
         //public int[] extraIntArray;
 
         //public HashSet<int> hset = new HashSet<int>();
@@ -3398,14 +3397,14 @@ namespace HashSetBench
         [GlobalSetup]
         public void Setup()
         {
-            __intArray = new int[N];
+            _intArray = new int[N];
 
             //Random rand = new Random(42);
             //Random rand = new Random(142);
             Random rand = new Random(89);
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                __intArray[i] = rand.Next(1, N);
+                _intArray[i] = rand.Next(1, N);
             }
         }
 
@@ -3413,9 +3412,9 @@ namespace HashSetBench
         public void SCG_HashSet_Add()
         {
             SCG.HashSet<int> set = new SCG.HashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
 
@@ -3423,9 +3422,9 @@ namespace HashSetBench
         public void C5_HashSet_Add()
         {
             SCG.HashSet<int> set = new SCG.HashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
 
@@ -3433,9 +3432,9 @@ namespace HashSetBench
         public void FastHashSet_Add()
         {
             FastHashSet<int> set = new FastHashSet<int>();
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                set.Add(__intArray[i]);
+                set.Add(_intArray[i]);
             }
         }
     }
@@ -3447,7 +3446,7 @@ namespace HashSetBench
     [RyuJitX64Job, LegacyJitX86Job]
     public class ExtraInts_SmallerRange
     {
-        private int[] __intArray;
+        private int[] _intArray;
         private int[] _extraIntArray;
 
         private readonly SCG.HashSet<int> _hset = new SCG.HashSet<int>();
@@ -3459,18 +3458,18 @@ namespace HashSetBench
         [GlobalSetup]
         public void SetupWithSmallerRange()
         {
-            __intArray = new int[N];
+            _intArray = new int[N];
 
             Random rand = new Random(89);
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                __intArray[i] = rand.Next(1, N);
+                _intArray[i] = rand.Next(1, N);
             }
 
-            for (int i = 0; i < __intArray.Length; i++)
+            for (int i = 0; i < _intArray.Length; i++)
             {
-                _hset.Add(__intArray[i]);
-                _fset.Add(__intArray[i]);
+                _hset.Add(_intArray[i]);
+                _fset.Add(_intArray[i]);
             }
 
             _extraIntArray = new int[1000];

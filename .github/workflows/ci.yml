@@ -81,7 +81,7 @@ jobs:
     - name: Build
       run: dotnet build -c Release
 
-    - name: Run All_Days_Benchmark
+    - name: Run Benchmarks
       run: dotnet run -c Release --no-build
       working-directory: ./HashSetBench
 

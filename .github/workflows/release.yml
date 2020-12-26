@@ -64,7 +64,7 @@ jobs:
       run: dotnet build -c Release /p:DeterministicBuild=true
 
     - name: Build tests
-      run: dotnet build -c Release
+      run: dotnet build -c Release /p:DeterministicBuild=true
       working-directory: ./FastHashSetTestsExtra
 
     - name: Test

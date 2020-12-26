@@ -38,6 +38,6 @@ jobs:
       continue-on-error: true
       uses: actions/upload-artifact@v2
       with:
-        name: artifacts-${{ matrix.os }}-${{ github.run_number }}
+        name: benchmarks-${{ matrix.os }}-${{ github.run_number }}
         path: ./HashSetBench/BenchmarkDotNet.Artifacts/results/
         if-no-files-found: error

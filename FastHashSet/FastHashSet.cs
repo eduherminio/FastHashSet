@@ -120,7 +120,6 @@ namespace Motvin.Collections
 
         // 1 - same constructor params as HashSet
         /// <summary>Initializes a new instance of the FastHashSet&lt;<typeparamref name="T"/>&gt;.</summary>
-        /// <typeparam name="T">The element type of the FastHashSet.</typeparam>
         public FastHashSet()
         {
             _comparer = EqualityComparer<T>.Default;
@@ -129,7 +128,6 @@ namespace Motvin.Collections
 
         // 2 - same constructor params as HashSet
         /// <summary>Initializes a new instance of the FastHashSet&lt;<typeparamref name="T"/>&gt;.</summary>
-        /// <typeparam name="T">The element type of the FastHashSet.</typeparam>
         /// <param name="collection">The collection to initially add to the FastHashSet.</param>
         public FastHashSet(IEnumerable<T> collection)
         {
@@ -139,7 +137,6 @@ namespace Motvin.Collections
 
         // 3 - same constructor params as HashSet
         /// <summary>Initializes a new instance of the FastHashSet&lt;<typeparamref name="T"/>&gt;.</summary>
-        /// <typeparam name="T">The element type of the FastHashSet.</typeparam>
         /// <param name="comparer">The IEqualityComparer to use for determining equality of elements in the FastHashSet.</param>
         public FastHashSet(IEqualityComparer<T> comparer)
         {
@@ -149,7 +146,6 @@ namespace Motvin.Collections
 
         // 4 - same constructor params as HashSet
         /// <summary>Initializes a new instance of the FastHashSet&lt;<typeparamref name="T"/>&gt;.</summary>
-        /// <typeparam name="T">The element type of the FastHashSet.</typeparam>
         /// <param name="capacity">The initial capacity of the FastHashSet.</param>
         public FastHashSet(int capacity)
         {
@@ -567,7 +563,9 @@ namespace Motvin.Collections
             }
         }
 
-        /// <summary>True if the FastHashSet if read-only.  This is always false.  This is only present to implement ICollection<T>, it has no real value otherwise.</summary>
+        /// <summary>
+        /// True if the FastHashSet if read-only.  This is always false.  This is only present to implement ICollection&lt;T&gt;, it has no real value otherwise.
+        /// </summary>
         bool ICollection<T>.IsReadOnly
         {
             get { return false; }
@@ -3533,7 +3531,7 @@ namespace Motvin.Collections
         /// <summary>
         /// Allows enumerating through items in the FastHashSet.  Order is not guaranteed.
         /// </summary>
-        /// <returns>The IEnumerator<T> for the FastHashSet.</returns>
+        /// <returns>The IEnumerator&lt;T&gt; for the FastHashSet.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             return new FastHashSetEnumerator<T>(this);

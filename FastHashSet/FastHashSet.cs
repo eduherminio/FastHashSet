@@ -155,7 +155,6 @@ namespace Motvin.Collections
 
         // 5 - same constructor params as HashSet
         /// <summary>Initializes a new instance of the FastHashSet&lt;<typeparamref name="T"/>&gt;.</summary>
-        /// <typeparam name="T">The element type of the FastHashSet</typeparam>
         /// <param name="collection">The collection to initially add to the FastHashSet.</param>
         /// <param name="comparer">The IEqualityComparer to use for determining equality of elements in the FastHashSet.</param>
         public FastHashSet(IEnumerable<T> collection, IEqualityComparer<T> comparer)
@@ -166,7 +165,6 @@ namespace Motvin.Collections
 
         // 6 - same constructor params as HashSet
         /// <summary>Initializes a new instance of the FastHashSet&lt;<typeparamref name="T"/>&gt;.</summary>
-        /// <typeparam name="T">The element type of the set</typeparam>
         /// <param name="capacity">The initial capacity of the FastHashSet.</param>
         /// <param name="comparer">The IEqualityComparer to use for determining equality of elements in the FastHashSet.</param>
         public FastHashSet(int capacity, IEqualityComparer<T> comparer)
@@ -175,13 +173,13 @@ namespace Motvin.Collections
             SetInitialCapacity(capacity);
         }
 
+#if false // removed for now because it's probably not that useful and needs some changes to be correct
         /// <summary>Initializes a new instance of the FastHashSet&lt;<typeparamref name="T"/>&gt;.</summary>
         /// <typeparam name="T">The element type of the FastHashSet</typeparam>
         /// <param name="collection">The collection to initially add to the FastHashSet.</param>
         /// <param name="areAllCollectionItemsDefinitelyUnique">True if the collection items are all unique.  The collection items can be added more quickly if they are known to be unique.</param>
         /// <param name="capacity">The initial capacity of the FastHashSet.</param>
         /// <param name="comparer">The IEqualityComparer to use for determining equality of elements in the FastHashSet.</param>
-#if false // removed for now because it's probably not that useful and needs some changes to be correct
 		public FastHashSet(IEnumerable<T> collection, bool areAllCollectionItemsDefinitelyUnique, int capacity, IEqualityComparer<T> comparer = null)
 		{
 			this.comparer = comparer ?? EqualityComparer<T>.Default;
@@ -571,7 +569,10 @@ namespace Motvin.Collections
             get { return false; }
         }
 
-        /// <summary>Copies all elements of the FastHashSet&lt;<typeparamref name="T"/>&gt; into an array starting at arrayIndex.  This implements ICollection<T>.CopyTo(T[], Int32).</summary>
+        /// <summary>
+        /// Copies all elements of the FastHashSet&lt;<typeparamref name="T"/>&gt; into an array starting at arrayIndex.
+        /// This implements ICollection&lt;T&gt;.CopyTo(T[], Int32).
+        /// </summary>
         /// <param name="array">The destination array.</param>
         /// <param name="arrayIndex">The starting array index to copy elements to.</param>
         public void CopyTo(T[] array, int arrayIndex)

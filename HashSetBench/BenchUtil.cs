@@ -12,28 +12,28 @@ namespace HashSetBench
     {
         public const int MaxCacheSizeInInts = 5_000_000;
 
-        private static int[] _clearCacheArray;
-        private static int[] _indicesIntoCacheArray;
+        private static int[] ClearCacheArray;
+        private static int[] IndicesIntoCacheArray;
 
-        private static int _sum;
+        private static int Sum;
 
         public static void ClearCpuCaches()
         {
-            if (_clearCacheArray == null)
+            if (ClearCacheArray == null)
             {
-                _clearCacheArray = new int[MaxCacheSizeInInts * 2];
+                ClearCacheArray = new int[MaxCacheSizeInInts * 2];
 
                 // populate the array
-                for (int i = 0; i < _clearCacheArray.Length; i++)
+                for (int i = 0; i < ClearCacheArray.Length; i++)
                 {
-                    _clearCacheArray[i] = 1;
+                    ClearCacheArray[i] = 1;
                 }
 
                 // populate an array of indices into this array and mix up their order
-                int indicesIntoCacheArraySize = _clearCacheArray.Length / 16; // assume that a cache line is at least 16 bytes long
-                _indicesIntoCacheArray = new int[indicesIntoCacheArraySize];
+                int indicesIntoCacheArraySize = ClearCacheArray.Length / 16; // assume that a cache line is at least 16 bytes long
+                IndicesIntoCacheArray = new int[indicesIntoCacheArraySize];
                 Random rand = new Random(89);
-                int maxIdx = _indicesIntoCacheArray.Length - 1;
+                int maxIdx = IndicesIntoCacheArray.Length - 1;
                 for (int i = 0; i < indicesIntoCacheArraySize; i++)
                 {
                     int idx = rand.Next(1, maxIdx); // don't allow 0 index because this will be the not-an-index value
@@ -41,9 +41,9 @@ namespace HashSetBench
                     int j = idx;
                     for (; j < indicesIntoCacheArraySize; j++)
                     {
-                        if (_indicesIntoCacheArray[i] == 0)
+                        if (IndicesIntoCacheArray[i] == 0)
                         {
-                            _indicesIntoCacheArray[i] = idx;
+                            IndicesIntoCacheArray[i] = idx;
                             break;
                         }
                     }
@@ -54,9 +54,9 @@ namespace HashSetBench
                         j = idx - 1;
                         for (; j >= 0; j--)
                         {
-                            if (_indicesIntoCacheArray[i] == 0)
+                            if (IndicesIntoCacheArray[i] == 0)
                             {
-                                _indicesIntoCacheArray[i] = idx;
+                                IndicesIntoCacheArray[i] = idx;
                                 break;
                             }
                         }
@@ -64,9 +64,9 @@ namespace HashSetBench
                 }
             }
 
-            for (int i = 0; i < _indicesIntoCacheArray.Length; i++)
+            for (int i = 0; i < IndicesIntoCacheArray.Length; i++)
             {
-                _sum += _clearCacheArray[_indicesIntoCacheArray[i]];
+                Sum += ClearCacheArray[IndicesIntoCacheArray[i]];
             }
         }
 

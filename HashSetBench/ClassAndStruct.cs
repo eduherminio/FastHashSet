@@ -6,271 +6,271 @@ using System.Threading.Tasks;
 
 namespace HashSetBench
 {
-	// this should be 8 bytes in size
-	public struct SmallStruct : IEquatable<SmallStruct>
-	{
-		public int myInt;
-		public int myInt2;
+    // this should be 8 bytes in size
+    public struct SmallStruct : IEquatable<SmallStruct>
+    {
+        public int MyInt;
+        public int MyInt2;
 
-		public SmallStruct(int i, int i2)
-		{
-			myInt = i;
-			myInt2 = i2;
-		}
+        public SmallStruct(int i, int i2)
+        {
+            MyInt = i;
+            MyInt2 = i2;
+        }
 
-		public static SmallStruct CreateRand(Random rand)
-		{
-			int i = rand.Next(); // make this non-negative
-			int i2 = rand.Next(); // make this non-negative
+        public static SmallStruct CreateRand(Random rand)
+        {
+            int i = rand.Next(); // make this non-negative
+            int i2 = rand.Next(); // make this non-negative
 
-			return new SmallStruct(i, i2);
-		}
+            return new SmallStruct(i, i2);
+        }
 
-		public override int GetHashCode()
-		{
-			int hash = 13;
+        public override int GetHashCode()
+        {
+            int hash = 13;
 
-			unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
-			{
-				hash = (hash * 7) + myInt;
-				hash = (hash * 7) + myInt2;
-			}
+            unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
+            {
+                hash = (hash * 7) + MyInt;
+                hash = (hash * 7) + MyInt2;
+            }
 
-			return hash;
-		}
+            return hash;
+        }
 
-		public override bool Equals(object obj)
-		{
-			if (obj.GetType() != typeof(SmallStruct))
-			{
-				return false;
-			}
+        public override bool Equals(object obj)
+        {
+            if (!(obj is SmallStruct))
+            {
+                return false;
+            }
 
-			return Equals((SmallStruct)obj);
-		}
+            return Equals((SmallStruct)obj);
+        }
 
-		public bool Equals(SmallStruct other)
-		{
-			return (myInt == other.myInt && myInt2 == other.myInt2);
-		}
+        public bool Equals(SmallStruct other)
+        {
+            return (MyInt == other.MyInt && MyInt2 == other.MyInt2);
+        }
 
-		public static bool operator ==(SmallStruct c1, SmallStruct c2)
-		{
-			return c1.Equals(c2);
-		}
+        public static bool operator ==(SmallStruct c1, SmallStruct c2)
+        {
+            return c1.Equals(c2);
+        }
 
-		public static bool operator !=(SmallStruct c1, SmallStruct c2)
-		{
-			return !c1.Equals(c2);
-		}
-	}
+        public static bool operator !=(SmallStruct c1, SmallStruct c2)
+        {
+            return !c1.Equals(c2);
+        }
+    }
 
-	public sealed class SmallClass : IEquatable<SmallClass>
-	{
-		public int myInt;
-		public int myInt2;
+    public sealed class SmallClass : IEquatable<SmallClass>
+    {
+        public int MyInt;
+        public int MyInt2;
 
-		public SmallClass(int i, int i2)
-		{
-			myInt = i;
-			myInt2 = i2;
-		}
+        public SmallClass(int i, int i2)
+        {
+            MyInt = i;
+            MyInt2 = i2;
+        }
 
-		public static SmallClass CreateRand(Random rand)
-		{
-			int i = rand.Next(); // make this non-negative
-			int i2 = rand.Next(); // make this non-negative
+        public static SmallClass CreateRand(Random rand)
+        {
+            int i = rand.Next(); // make this non-negative
+            int i2 = rand.Next(); // make this non-negative
 
-			return new SmallClass(i, i2);
-		}
+            return new SmallClass(i, i2);
+        }
 
-		public override int GetHashCode()
-		{
-			int hash = 13;
+        public override int GetHashCode()
+        {
+            int hash = 13;
 
-			unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
-			{
-				hash = (hash * 7) + myInt;
-				hash = (hash * 7) + myInt2;
-			}
+            unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
+            {
+                hash = (hash * 7) + MyInt;
+                hash = (hash * 7) + MyInt2;
+            }
 
-			return hash;
-		}
+            return hash;
+        }
 
-		public override bool Equals(object obj)
-		{
-			if (obj == null)
-			{
-				return false;
-			}
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
 
-			return Equals(obj as SmallClass);
-		}
+            return Equals(obj as SmallClass);
+        }
 
-		public bool Equals(SmallClass other)
-		{
-			if (other == null)
-			{
-				return false;
-			}
+        public bool Equals(SmallClass other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
 
-			return (myInt == other.myInt && myInt2 == other.myInt2);
-		}
-	}
+            return (MyInt == other.MyInt && MyInt2 == other.MyInt2);
+        }
+    }
 
-	public struct SmallStructIntVal : IEquatable<SmallStructIntVal>
-	{
-		public int myInt;
-		public int refCountOrSum;
+    public struct SmallStructIntVal : IEquatable<SmallStructIntVal>
+    {
+        public int MyInt;
+        public int refCountOrSum;
 
-		public SmallStructIntVal(int i, int refCountOrSum)
-		{
-			myInt = i;
-			this.refCountOrSum = refCountOrSum;
-		}
+        public SmallStructIntVal(int i, int refCountOrSum)
+        {
+            MyInt = i;
+            this.refCountOrSum = refCountOrSum;
+        }
 
-		public override int GetHashCode()
-		{
-			return myInt;
-		}
+        public override int GetHashCode()
+        {
+            return MyInt;
+        }
 
-		public override bool Equals(object obj)
-		{
-			if (obj.GetType() != typeof(SmallStructIntVal))
-			{
-				return false;
-			}
+        public override bool Equals(object obj)
+        {
+            if (!(obj is SmallStructIntVal))
+            {
+                return false;
+            }
 
-			return Equals((SmallStruct)obj);
-		}
+            return Equals((SmallStruct)obj);
+        }
 
-		public bool Equals(SmallStructIntVal other)
-		{
-			return (myInt == other.myInt);
-		}
+        public bool Equals(SmallStructIntVal other)
+        {
+            return (MyInt == other.MyInt);
+        }
 
-		public static bool operator ==(SmallStructIntVal c1, SmallStructIntVal c2)
-		{
-			return c1.Equals(c2);
-		}
+        public static bool operator ==(SmallStructIntVal c1, SmallStructIntVal c2)
+        {
+            return c1.Equals(c2);
+        }
 
-		public static bool operator !=(SmallStructIntVal c1, SmallStructIntVal c2)
-		{
-			return !c1.Equals(c2);
-		}
-	}
+        public static bool operator !=(SmallStructIntVal c1, SmallStructIntVal c2)
+        {
+            return !c1.Equals(c2);
+        }
+    }
 
-	public sealed class SmallClassIntVal : IEquatable<SmallClassIntVal>
-	{
-		public int myInt;
-		public int refCountOrSum;
+    public sealed class SmallClassIntVal : IEquatable<SmallClassIntVal>
+    {
+        public int MyInt;
+        public int refCountOrSum;
 
-		public SmallClassIntVal(int i, int refCountOrSum)
-		{
-			myInt = i;
-			this.refCountOrSum = refCountOrSum;
-		}
+        public SmallClassIntVal(int i, int refCountOrSum)
+        {
+            MyInt = i;
+            this.refCountOrSum = refCountOrSum;
+        }
 
-		public override int GetHashCode()
-		{
-			return myInt;
-		}
+        public override int GetHashCode()
+        {
+            return MyInt;
+        }
 
-		public override bool Equals(object obj)
-		{
-			return Equals(obj as SmallClassIntVal);
-		}
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as SmallClassIntVal);
+        }
 
-		public bool Equals(SmallClassIntVal other)
-		{
-			if (other == null)
-			{
-				return false;
-			}
+        public bool Equals(SmallClassIntVal other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
 
-			return (myInt == other.myInt);
-		}
-	}
+            return (MyInt == other.MyInt);
+        }
+    }
 
-	// this should be 8 bytes in size
-	public struct SmallStructBasic
-	{
-		public int myInt;
-		public int myInt2;
+    // this should be 8 bytes in size
+    public struct SmallStructBasic
+    {
+        public int MyInt;
+        public int MyInt2;
 
-		public SmallStructBasic(int i, int i2)
-		{
-			myInt = i;
-			myInt2 = i2;
-		}
-	}
+        public SmallStructBasic(int i, int i2)
+        {
+            MyInt = i;
+            MyInt2 = i2;
+        }
+    }
 
-	public class SmallClassBasic
-	{
-		public int myInt;
-		public int myInt2;
+    public class SmallClassBasic
+    {
+        public int MyInt;
+        public int MyInt2;
 
-		public SmallClassBasic(int i, int i2)
-		{
-			myInt = i;
-			myInt2 = i2;
-		}
-	}
+        public SmallClassBasic(int i, int i2)
+        {
+            MyInt = i;
+            MyInt2 = i2;
+        }
+    }
 
-	// this should be about 20 bytes in size (assuming DateTime is 8 bytes)
-	public struct MediumStruct : IEquatable<MediumStruct>
-	{
-		public DateTime myDate;
-		public double myDouble;
-		public int myInt;
+    // this should be about 20 bytes in size (assuming DateTime is 8 bytes)
+    public struct MediumStruct : IEquatable<MediumStruct>
+    {
+        public DateTime MyDate;
+        public double MyDouble;
+        public int MyInt;
 
-		public MediumStruct(DateTime dt, double d, int i)
-		{
-			myDate = dt;
-			myDouble = d;
-			myInt = i;
-		}
+        public MediumStruct(DateTime dt, double d, int i)
+        {
+            MyDate = dt;
+            MyDouble = d;
+            MyInt = i;
+        }
 
-		public static MediumStruct CreateRand(Random rand)
-		{
-			double d = rand.NextDouble();
-			int i = rand.Next(); // make this non-negative
-			int year = rand.Next(1990, 2019);
-			int month = rand.Next(1, 12);
-			int day = rand.Next(1, 28);
+        public static MediumStruct CreateRand(Random rand)
+        {
+            double d = rand.NextDouble();
+            int i = rand.Next(); // make this non-negative
+            int year = rand.Next(1990, 2019);
+            int month = rand.Next(1, 12);
+            int day = rand.Next(1, 28);
 
-			return new MediumStruct(new DateTime(year, month, day), d, i);
-		}
+            return new MediumStruct(new DateTime(year, month, day), d, i);
+        }
 
-		public override int GetHashCode()
-		{
-			int hash = 13;
+        public override int GetHashCode()
+        {
+            int hash = 13;
 
-			unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
-			{
-				hash = (hash * 7) + myInt;
-				hash = (hash * 7) + myDouble.GetHashCode();
-				hash = (hash * 7) + myDate.GetHashCode();
-			}
+            unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
+            {
+                hash = (hash * 7) + MyInt;
+                hash = (hash * 7) + MyDouble.GetHashCode();
+                hash = (hash * 7) + MyDate.GetHashCode();
+            }
 
-			return hash;
-		}
+            return hash;
+        }
 
-		public override bool Equals(object obj)
-		{
-			if (obj.GetType() != typeof(MediumStruct))
-			{
-				return false;
-			}
+        public override bool Equals(object obj)
+        {
+            if (!(obj is MediumStruct))
+            {
+                return false;
+            }
 
-			return Equals((MediumStruct)obj);
-		}
+            return Equals((MediumStruct)obj);
+        }
 
-		public bool Equals(MediumStruct other)
-		{
-			return (myInt == other.myInt && myDouble == other.myDouble && myDate == other.myDate);
+        public bool Equals(MediumStruct other)
+        {
+            return (MyInt == other.MyInt && MyDouble == other.MyDouble && MyDate == other.MyDate);
 
-		}
+        }
 
         public static bool operator ==(MediumStruct c1, MediumStruct c2)
         {
@@ -281,146 +281,146 @@ namespace HashSetBench
         {
             return !c1.Equals(c2);
         }
-	}
+    }
 
-	public sealed class MediumClass : IEquatable<MediumClass>
-	{
-		public DateTime myDate;
-		public double myDouble;
-		public int myInt;
+    public sealed class MediumClass : IEquatable<MediumClass>
+    {
+        public DateTime MyDate;
+        public double MyDouble;
+        public int MyInt;
 
-		public MediumClass(DateTime dt, double d, int i)
-		{
-			myDate = dt;
-			myDouble = d;
-			myInt = i;
-		}
+        public MediumClass(DateTime dt, double d, int i)
+        {
+            MyDate = dt;
+            MyDouble = d;
+            MyInt = i;
+        }
 
-		public static MediumClass CreateRand(Random rand)
-		{
-			double d = rand.NextDouble();
-			int i = rand.Next(); // make this non-negative
-			int year = rand.Next(1990, 2019);
-			int month = rand.Next(1, 12);
-			int day = rand.Next(1, 28);
+        public static MediumClass CreateRand(Random rand)
+        {
+            double d = rand.NextDouble();
+            int i = rand.Next(); // make this non-negative
+            int year = rand.Next(1990, 2019);
+            int month = rand.Next(1, 12);
+            int day = rand.Next(1, 28);
 
-			return new MediumClass(new DateTime(year, month, day), d, i);
-		}
+            return new MediumClass(new DateTime(year, month, day), d, i);
+        }
 
-		public override int GetHashCode()
-		{
-			int hash = 13;
+        public override int GetHashCode()
+        {
+            int hash = 13;
 
-			unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
-			{
-				hash = (hash * 7) + myInt;
-				hash = (hash * 7) + myDouble.GetHashCode();
-				hash = (hash * 7) + myDate.GetHashCode();
-			}
+            unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
+            {
+                hash = (hash * 7) + MyInt;
+                hash = (hash * 7) + MyDouble.GetHashCode();
+                hash = (hash * 7) + MyDate.GetHashCode();
+            }
 
-			return hash;
-		}
+            return hash;
+        }
 
-		public override bool Equals(object obj)
-		{
-			if (obj == null)
-			{
-				return false;
-			}
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
 
-			return Equals(obj as MediumClass);
-		}
+            return Equals(obj as MediumClass);
+        }
 
-		public bool Equals(MediumClass other)
-		{
-			if (other == null)
-			{
-				return false;
-			}
+        public bool Equals(MediumClass other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
 
-			return (myInt == other.myInt && myDouble == other.myDouble && myDate == other.myDate);
-		}
-	}
+            return (MyInt == other.MyInt && MyDouble == other.MyDouble && MyDate == other.MyDate);
+        }
+    }
 
-	// this should be about 40 bytes, not including the space for the actual string bytes
-	public struct LargeStruct : IEquatable<LargeStruct>
-	{
-		public DateTime myDate;
-		public double myDouble;
-		public double myDouble2;
-		public int myInt;
-		public int myInt2;
-		public int myInt3;
-		public string myString;
+    // this should be about 40 bytes, not including the space for the actual string bytes
+    public struct LargeStruct : IEquatable<LargeStruct>
+    {
+        public DateTime MyDate;
+        public double MyDouble;
+        public double MyDouble2;
+        public int MyInt;
+        public int MyInt2;
+        public int MyInt3;
+        public string MyString;
 
-		public LargeStruct(DateTime dt, double d, double d2, int i, int i2, int i3, string s)
-		{
-			myDate = dt;
-			myDouble = d;
-			myDouble2 = d2;
-			myInt = i;
-			myInt2 = i2;
-			myInt3 = i3;
-			myString = s;
-		}
+        public LargeStruct(DateTime dt, double d, double d2, int i, int i2, int i3, string s)
+        {
+            MyDate = dt;
+            MyDouble = d;
+            MyDouble2 = d2;
+            MyInt = i;
+            MyInt2 = i2;
+            MyInt3 = i3;
+            MyString = s;
+        }
 
-		public static LargeStruct CreateRand(Random rand)
-		{
-			double d = rand.NextDouble();
-			double d2 = rand.NextDouble();
-			int i = rand.Next(); // make this non-negative
-			int i2 = rand.Next(); // make this non-negative
-			int i3 = rand.Next(); // make this non-negative
-			int year = rand.Next(1990, 2019);
-			int month = rand.Next(1, 12);
-			int day = rand.Next(1, 28);
+        public static LargeStruct CreateRand(Random rand)
+        {
+            double d = rand.NextDouble();
+            double d2 = rand.NextDouble();
+            int i = rand.Next(); // make this non-negative
+            int i2 = rand.Next(); // make this non-negative
+            int i3 = rand.Next(); // make this non-negative
+            int year = rand.Next(1990, 2019);
+            int month = rand.Next(1, 12);
+            int day = rand.Next(1, 28);
 
-			string[] strFreq = new string[] { 
-				StringRandUtil.uppercaseChars,
-				StringRandUtil.uppercaseChars,
-				StringRandUtil.lowercaseChars,
-				StringRandUtil.lowercaseChars,
-				StringRandUtil.digits,
-				StringRandUtil.space,
-				StringRandUtil.symbols,
-				};
-			string s = StringRandUtil.CreateRandomString(rand, 10, 12, strFreq);
+            string[] strFreq = new string[] {
+                StringRandUtil.UppercaseChars,
+                StringRandUtil.UppercaseChars,
+                StringRandUtil.LowercaseChars,
+                StringRandUtil.LowercaseChars,
+                StringRandUtil.Digits,
+                StringRandUtil.Space,
+                StringRandUtil.Symbols,
+                };
+            string s = StringRandUtil.CreateRandomString(rand, 10, 12, strFreq);
 
-			return new LargeStruct(new DateTime(year, month, day), d, d2, i, i2, i3, s);
-		}
+            return new LargeStruct(new DateTime(year, month, day), d, d2, i, i2, i3, s);
+        }
 
-		public override int GetHashCode()
-		{
-			int hash = 13;
+        public override int GetHashCode()
+        {
+            int hash = 13;
 
-			unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
-			{
-				hash = (hash * 7) + myInt;
-				hash = (hash * 7) + myInt2;
-				hash = (hash * 7) + myInt3;
-				hash = (hash * 7) + myDouble.GetHashCode();
-				hash = (hash * 7) + myDouble2.GetHashCode();
-				hash = (hash * 7) + myDate.GetHashCode();
-				hash = (hash * 7) + myString.GetHashCode();
-			}
+            unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
+            {
+                hash = (hash * 7) + MyInt;
+                hash = (hash * 7) + MyInt2;
+                hash = (hash * 7) + MyInt3;
+                hash = (hash * 7) + MyDouble.GetHashCode();
+                hash = (hash * 7) + MyDouble2.GetHashCode();
+                hash = (hash * 7) + MyDate.GetHashCode();
+                hash = (hash * 7) + MyString.GetHashCode();
+            }
 
-			return hash;
-		}
+            return hash;
+        }
 
-		public override bool Equals(object obj)
-		{
-			if (obj.GetType() != typeof(LargeStruct))
-			{
-				return false;
-			}
+        public override bool Equals(object obj)
+        {
+            if (!(obj is LargeStruct))
+            {
+                return false;
+            }
 
-			return Equals((LargeStruct)obj);
-		}
+            return Equals((LargeStruct)obj);
+        }
 
-		public bool Equals(LargeStruct other)
-		{
-			return (myInt == other.myInt && myInt2 == other.myInt2 && myInt3 == other.myInt3 && myDouble == other.myDouble && myDouble2 == other.myDouble2 && myDate == other.myDate && myString == other.myString);
-		}
+        public bool Equals(LargeStruct other)
+        {
+            return (MyInt == other.MyInt && MyInt2 == other.MyInt2 && MyInt3 == other.MyInt3 && MyDouble == other.MyDouble && MyDouble2 == other.MyDouble2 && MyDate == other.MyDate && MyString == other.MyString);
+        }
 
         public static bool operator ==(LargeStruct c1, LargeStruct c2)
         {
@@ -431,173 +431,173 @@ namespace HashSetBench
         {
             return !c1.Equals(c2);
         }
-	}
+    }
 
-	// this should be about 40 bytes, not including the space for the actual string bytes
-	public sealed class LargeClass : IEquatable<LargeClass>
-	{
-		public DateTime myDate;
-		public double myDouble;
-		public double myDouble2;
-		public int myInt;
-		public int myInt2;
-		public int myInt3;
-		public string myString;
+    // this should be about 40 bytes, not including the space for the actual string bytes
+    public sealed class LargeClass : IEquatable<LargeClass>
+    {
+        public DateTime MyDate;
+        public double MyDouble;
+        public double MyDouble2;
+        public int MyInt;
+        public int MyInt2;
+        public int MyInt3;
+        public string MyString;
 
-		public LargeClass(DateTime dt, double d, double d2, int i, int i2, int i3, string s)
-		{
-			myDate = dt;
-			myDouble = d;
-			myDouble2 = d2;
-			myInt = i;
-			myInt2 = i2;
-			myInt3 = i3;
-			myString = s;
-		}
+        public LargeClass(DateTime dt, double d, double d2, int i, int i2, int i3, string s)
+        {
+            MyDate = dt;
+            MyDouble = d;
+            MyDouble2 = d2;
+            MyInt = i;
+            MyInt2 = i2;
+            MyInt3 = i3;
+            MyString = s;
+        }
 
-		public static LargeClass CreateRand(Random rand)
-		{
-			double d = rand.NextDouble();
-			double d2 = rand.NextDouble();
-			int i = rand.Next(); // make this non-negative
-			int i2 = rand.Next(); // make this non-negative
-			int i3 = rand.Next(); // make this non-negative
-			int year = rand.Next(1990, 2019);
-			int month = rand.Next(1, 12);
-			int day = rand.Next(1, 28);
+        public static LargeClass CreateRand(Random rand)
+        {
+            double d = rand.NextDouble();
+            double d2 = rand.NextDouble();
+            int i = rand.Next(); // make this non-negative
+            int i2 = rand.Next(); // make this non-negative
+            int i3 = rand.Next(); // make this non-negative
+            int year = rand.Next(1990, 2019);
+            int month = rand.Next(1, 12);
+            int day = rand.Next(1, 28);
 
-			string[] strFreq = new string[] { 
-				StringRandUtil.uppercaseChars,
-				StringRandUtil.uppercaseChars,
-				StringRandUtil.lowercaseChars,
-				StringRandUtil.lowercaseChars,
-				StringRandUtil.digits,
-				StringRandUtil.space,
-				StringRandUtil.symbols,
-				};
-			string s = StringRandUtil.CreateRandomString(rand, 10, 12, strFreq);
+            string[] strFreq = new string[] {
+                StringRandUtil.UppercaseChars,
+                StringRandUtil.UppercaseChars,
+                StringRandUtil.LowercaseChars,
+                StringRandUtil.LowercaseChars,
+                StringRandUtil.Digits,
+                StringRandUtil.Space,
+                StringRandUtil.Symbols,
+                };
+            string s = StringRandUtil.CreateRandomString(rand, 10, 12, strFreq);
 
-			return new LargeClass(new DateTime(year, month, day), d, d2, i, i2, i3, s);
-		}
+            return new LargeClass(new DateTime(year, month, day), d, d2, i, i2, i3, s);
+        }
 
-		public override int GetHashCode()
-		{
-			int hash = 13;
+        public override int GetHashCode()
+        {
+            int hash = 13;
 
-			unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
-			{
-				hash = (hash * 7) + myInt;
-				hash = (hash * 7) + myInt2;
-				hash = (hash * 7) + myInt3;
-				hash = (hash * 7) + myDouble.GetHashCode();
-				hash = (hash * 7) + myDouble2.GetHashCode();
-				hash = (hash * 7) + myDate.GetHashCode();
-				hash = (hash * 7) + myString.GetHashCode();
-			}
+            unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
+            {
+                hash = (hash * 7) + MyInt;
+                hash = (hash * 7) + MyInt2;
+                hash = (hash * 7) + MyInt3;
+                hash = (hash * 7) + MyDouble.GetHashCode();
+                hash = (hash * 7) + MyDouble2.GetHashCode();
+                hash = (hash * 7) + MyDate.GetHashCode();
+                hash = (hash * 7) + MyString.GetHashCode();
+            }
 
-			return hash;
-		}
+            return hash;
+        }
 
-		public override bool Equals(object obj)
-		{
-			if (obj == null)
-			{
-				return false;
-			}
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
 
-			return Equals(obj as LargeClass);
-		}
+            return Equals(obj as LargeClass);
+        }
 
-		public bool Equals(LargeClass other)
-		{
-			if (other == null)
-			{
-				return false;
-			}
+        public bool Equals(LargeClass other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
 
-			return (myInt == other.myInt && myInt2 == other.myInt2 && myInt3 == other.myInt3 && myDouble == other.myDouble && myDouble2 == other.myDouble2 && myDate == other.myDate && myString == other.myString);
-		}
-	}
+            return (MyInt == other.MyInt && MyInt2 == other.MyInt2 && MyInt3 == other.MyInt3 && MyDouble == other.MyDouble && MyDouble2 == other.MyDouble2 && MyDate == other.MyDate && MyString == other.MyString);
+        }
+    }
 
-	// this should be about 64 bytes, not including the space for the actual string bytes
-	public struct VeryLargeStruct : IEquatable<VeryLargeStruct>
-	{
-		public DateTime myDate;
-		public double myDouble;
-		public double myDouble2;
-		public int myInt;
-		public int myInt2;
-		public int myInt3;
-		public string myString;
+    // this should be about 64 bytes, not including the space for the actual string bytes
+    public struct VeryLargeStruct : IEquatable<VeryLargeStruct>
+    {
+        public DateTime MyDate;
+        public double MyDouble;
+        public double MyDouble2;
+        public int MyInt;
+        public int MyInt2;
+        public int MyInt3;
+        public string MyString;
 
-		public VeryLargeStruct(DateTime dt, double d, double d2, int i, int i2, int i3, string s)
-		{
-			myDate = dt;
-			myDouble = d;
-			myDouble2 = d2;
-			myInt = i;
-			myInt2 = i2;
-			myInt3 = i3;
-			myString = s;
-		}
+        public VeryLargeStruct(DateTime dt, double d, double d2, int i, int i2, int i3, string s)
+        {
+            MyDate = dt;
+            MyDouble = d;
+            MyDouble2 = d2;
+            MyInt = i;
+            MyInt2 = i2;
+            MyInt3 = i3;
+            MyString = s;
+        }
 
-		public static VeryLargeStruct CreateRand(Random rand)
-		{
-			double d = rand.NextDouble();
-			double d2 = rand.NextDouble();
-			int i = rand.Next(); // make this non-negative
-			int i2 = rand.Next(); // make this non-negative
-			int i3 = rand.Next(); // make this non-negative
-			int year = rand.Next(1990, 2019);
-			int month = rand.Next(1, 12);
-			int day = rand.Next(1, 28);
+        public static VeryLargeStruct CreateRand(Random rand)
+        {
+            double d = rand.NextDouble();
+            double d2 = rand.NextDouble();
+            int i = rand.Next(); // make this non-negative
+            int i2 = rand.Next(); // make this non-negative
+            int i3 = rand.Next(); // make this non-negative
+            int year = rand.Next(1990, 2019);
+            int month = rand.Next(1, 12);
+            int day = rand.Next(1, 28);
 
-			string[] strFreq = new string[] { 
-				StringRandUtil.uppercaseChars,
-				StringRandUtil.uppercaseChars,
-				StringRandUtil.lowercaseChars,
-				StringRandUtil.lowercaseChars,
-				StringRandUtil.digits,
-				StringRandUtil.space,
-				StringRandUtil.symbols,
-				};
-			string s = StringRandUtil.CreateRandomString(rand, 10, 12, strFreq);
+            string[] strFreq = new string[] {
+                StringRandUtil.UppercaseChars,
+                StringRandUtil.UppercaseChars,
+                StringRandUtil.LowercaseChars,
+                StringRandUtil.LowercaseChars,
+                StringRandUtil.Digits,
+                StringRandUtil.Space,
+                StringRandUtil.Symbols,
+                };
+            string s = StringRandUtil.CreateRandomString(rand, 10, 12, strFreq);
 
-			return new VeryLargeStruct(new DateTime(year, month, day), d, d2, i, i2, i3, s);
-		}
+            return new VeryLargeStruct(new DateTime(year, month, day), d, d2, i, i2, i3, s);
+        }
 
-		public override int GetHashCode()
-		{
-			int hash = 13;
+        public override int GetHashCode()
+        {
+            int hash = 13;
 
-			unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
-			{
-				hash = (hash * 7) + myInt;
-				hash = (hash * 7) + myInt2;
-				hash = (hash * 7) + myInt3;
-				hash = (hash * 7) + myDouble.GetHashCode();
-				hash = (hash * 7) + myDouble2.GetHashCode();
-				hash = (hash * 7) + myDate.GetHashCode();
-				hash = (hash * 7) + myString.GetHashCode();
-			}
+            unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
+            {
+                hash = (hash * 7) + MyInt;
+                hash = (hash * 7) + MyInt2;
+                hash = (hash * 7) + MyInt3;
+                hash = (hash * 7) + MyDouble.GetHashCode();
+                hash = (hash * 7) + MyDouble2.GetHashCode();
+                hash = (hash * 7) + MyDate.GetHashCode();
+                hash = (hash * 7) + MyString.GetHashCode();
+            }
 
-			return hash;
-		}
+            return hash;
+        }
 
-		public override bool Equals(object obj)
-		{
-			if (obj.GetType() != typeof(VeryLargeStruct))
-			{
-				return false;
-			}
+        public override bool Equals(object obj)
+        {
+            if (!(obj is VeryLargeStruct))
+            {
+                return false;
+            }
 
-			return Equals((VeryLargeStruct)obj);
-		}
+            return Equals((VeryLargeStruct)obj);
+        }
 
-		public bool Equals(VeryLargeStruct other)
-		{
-			return (myInt == other.myInt && myInt2 == other.myInt2 && myInt3 == other.myInt3 && myDouble == other.myDouble && myDouble2 == other.myDouble2 && myDate == other.myDate && myString == other.myString);
-		}
+        public bool Equals(VeryLargeStruct other)
+        {
+            return (MyInt == other.MyInt && MyInt2 == other.MyInt2 && MyInt3 == other.MyInt3 && MyDouble == other.MyDouble && MyDouble2 == other.MyDouble2 && MyDate == other.MyDate && MyString == other.MyString);
+        }
 
         public static bool operator ==(VeryLargeStruct c1, VeryLargeStruct c2)
         {
@@ -608,91 +608,91 @@ namespace HashSetBench
         {
             return !c1.Equals(c2);
         }
-	}
+    }
 
-	// this should be about 64 bytes, not including the space for the actual string bytes
-	public sealed class VeryLargeClass : IEquatable<VeryLargeClass>
-	{
-		public DateTime myDate;
-		public double myDouble;
-		public double myDouble2;
-		public int myInt;
-		public int myInt2;
-		public int myInt3;
-		public string myString;
+    // this should be about 64 bytes, not including the space for the actual string bytes
+    public sealed class VeryLargeClass : IEquatable<VeryLargeClass>
+    {
+        private readonly DateTime _MyDate;
+        private readonly double _MyDouble;
+        private readonly double _MyDouble2;
+        private readonly int _MyInt;
+        private readonly int _MyInt2;
+        private readonly int _MyInt3;
+        private readonly string _MyString;
 
-		public VeryLargeClass(DateTime dt, double d, double d2, int i, int i2, int i3, string s)
-		{
-			myDate = dt;
-			myDouble = d;
-			myDouble2 = d2;
-			myInt = i;
-			myInt2 = i2;
-			myInt3 = i3;
-			myString = s;
-		}
+        public VeryLargeClass(DateTime dt, double d, double d2, int i, int i2, int i3, string s)
+        {
+            _MyDate = dt;
+            _MyDouble = d;
+            _MyDouble2 = d2;
+            _MyInt = i;
+            _MyInt2 = i2;
+            _MyInt3 = i3;
+            _MyString = s;
+        }
 
-		public static VeryLargeClass CreateRand(Random rand)
-		{
-			double d = rand.NextDouble();
-			double d2 = rand.NextDouble();
-			int i = rand.Next(); // make this non-negative
-			int i2 = rand.Next(); // make this non-negative
-			int i3 = rand.Next(); // make this non-negative
-			int year = rand.Next(1990, 2019);
-			int month = rand.Next(1, 12);
-			int day = rand.Next(1, 28);
+        public static VeryLargeClass CreateRand(Random rand)
+        {
+            double d = rand.NextDouble();
+            double d2 = rand.NextDouble();
+            int i = rand.Next(); // make this non-negative
+            int i2 = rand.Next(); // make this non-negative
+            int i3 = rand.Next(); // make this non-negative
+            int year = rand.Next(1990, 2019);
+            int month = rand.Next(1, 12);
+            int day = rand.Next(1, 28);
 
-			string[] strFreq = new string[] { 
-				StringRandUtil.uppercaseChars,
-				StringRandUtil.uppercaseChars,
-				StringRandUtil.lowercaseChars,
-				StringRandUtil.lowercaseChars,
-				StringRandUtil.digits,
-				StringRandUtil.space,
-				StringRandUtil.symbols,
-				};
-			string s = StringRandUtil.CreateRandomString(rand, 10, 12, strFreq);
+            string[] strFreq = new string[] {
+                StringRandUtil.UppercaseChars,
+                StringRandUtil.UppercaseChars,
+                StringRandUtil.LowercaseChars,
+                StringRandUtil.LowercaseChars,
+                StringRandUtil.Digits,
+                StringRandUtil.Space,
+                StringRandUtil.Symbols,
+                };
+            string s = StringRandUtil.CreateRandomString(rand, 10, 12, strFreq);
 
-			return new VeryLargeClass(new DateTime(year, month, day), d, d2, i, i2, i3, s);
-		}
+            return new VeryLargeClass(new DateTime(year, month, day), d, d2, i, i2, i3, s);
+        }
 
-		public override int GetHashCode()
-		{
-			int hash = 13;
+        public override int GetHashCode()
+        {
+            int hash = 13;
 
-			unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
-			{
-				hash = (hash * 7) + myInt;
-				hash = (hash * 7) + myInt2;
-				hash = (hash * 7) + myInt3;
-				hash = (hash * 7) + myDouble.GetHashCode();
-				hash = (hash * 7) + myDouble2.GetHashCode();
-				hash = (hash * 7) + myDate.GetHashCode();
-				hash = (hash * 7) + myString.GetHashCode();
-			}
+            unchecked // the code below may overflow the hash int and that will cause an exception if compiler is checking for arithmetic overflow - unchecked prevents this
+            {
+                hash = (hash * 7) + _MyInt;
+                hash = (hash * 7) + _MyInt2;
+                hash = (hash * 7) + _MyInt3;
+                hash = (hash * 7) + _MyDouble.GetHashCode();
+                hash = (hash * 7) + _MyDouble2.GetHashCode();
+                hash = (hash * 7) + _MyDate.GetHashCode();
+                hash = (hash * 7) + _MyString.GetHashCode();
+            }
 
-			return hash;
-		}
+            return hash;
+        }
 
-		public override bool Equals(object obj)
-		{
-			if (obj == null)
-			{
-				return false;
-			}
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
 
-			return Equals(obj as VeryLargeClass);
-		}
+            return Equals(obj as VeryLargeClass);
+        }
 
-		public bool Equals(VeryLargeClass other)
-		{
-			if (other == null)
-			{
-				return false;
-			}
+        public bool Equals(VeryLargeClass other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
 
-			return (myInt == other.myInt && myInt2 == other.myInt2 && myInt3 == other.myInt3 && myDouble == other.myDouble && myDouble2 == other.myDouble2 && myDate == other.myDate && myString == other.myString);
-		}
-	}
+            return (_MyInt == other._MyInt && _MyInt2 == other._MyInt2 && _MyInt3 == other._MyInt3 && _MyDouble == other._MyDouble && _MyDouble2 == other._MyDouble2 && _MyDate == other._MyDate && _MyString == other._MyString);
+        }
+    }
 }

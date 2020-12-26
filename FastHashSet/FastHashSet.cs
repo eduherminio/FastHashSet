@@ -3847,16 +3847,16 @@ namespace Motvin.Collections
     {
         public ChainLevelAndCount(int level, int count)
         {
-            Level = level;
-            Count = count;
+            _level = level;
+            _count = count;
         }
 
-        public int Level;
-        public int Count;
+        private readonly int _level;
+        private readonly int _count;
 
         public int CompareTo(ChainLevelAndCount other)
         {
-            return Level.CompareTo(other.Level);
+            return _level.CompareTo(other._level);
         }
     }
 

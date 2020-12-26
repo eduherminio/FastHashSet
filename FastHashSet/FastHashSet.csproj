@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A99BFA31-0806-4E83-82CC-C50A0A5D1B55}</ProjectGuid>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net472;netstandard2.0;net5.0</TargetFrameworks>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>

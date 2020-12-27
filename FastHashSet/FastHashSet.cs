@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace Motvin.Collections
+namespace FastHashSet
 {
     // didn't implement ISerializable and IDeserializationCallback
     // these are implemented in the .NET HashSet

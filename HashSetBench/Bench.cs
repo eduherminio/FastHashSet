@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Diagnosers;
 using SCG = System.Collections.Generic;
-using Motvin.Collections;
+using FastHashSet;
 using BenchmarkDotNet.Jobs;
 
 namespace HashSetBench

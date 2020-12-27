@@ -2,7 +2,7 @@
 //#define RunVeryLongTests
 
 using Xunit;
-using Motvin.Collections;
+using FastHashSet;
 using System.Text;
 using System.Collections.Generic;
 using System;

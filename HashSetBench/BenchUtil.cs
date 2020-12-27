@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SCG = System.Collections.Generic;
-using Motvin.Collections;
+using FastHashSet;
 
 namespace HashSetBench
 {
@@ -171,15 +171,15 @@ namespace HashSetBench
             mixedArray = new int[maxN];
 
             Random rand = new Random(89);
-            BenchUtil.PopulateIntArray(uniqueArray, rand, int.MinValue, int.MaxValue, 1.0); // a array should have 100% unique values
+            PopulateIntArray(uniqueArray, rand, int.MinValue, int.MaxValue, 1.0); // a array should have 100% unique values
 
             int uniqueValuesCount = maxN / 2; // this should produce a c array that has 50% unique values (the other 50% are duplicates), but all are actually in the uniqueArray, so 1, 1, 2, 2 would be an example of this
             if (uniqueValuesCount == 0)
             {
                 uniqueValuesCount = 1;
             }
-            BenchUtil.PopulateIntArrayFromUniqueArray(mixedArray, rand, uniqueArray, uniqueValuesCount);
-            BenchUtil.PopulateIntArrayAtRandomIndices(mixedArray, rand, int.MinValue, int.MaxValue, maxN - uniqueValuesCount);
+            PopulateIntArrayFromUniqueArray(mixedArray, rand, uniqueArray, uniqueValuesCount);
+            PopulateIntArrayAtRandomIndices(mixedArray, rand, int.MinValue, int.MaxValue, maxN - uniqueValuesCount);
 
             if (h != null)
             {
